@@ -1,5 +1,26 @@
 let addEmpBtn=document.getElementById("addEmpBtn")
 let empForm=document.getElementById("empForm")
+let tBody=document.getElementById("tBody")
+let allEmpsGetBtn=document.getElementById("allEmps")
+
+
+function loadEmps(){
+    tBody.innerHTML=""
+        let allData=JSON.parse(localStorage.getItem("emps"))
+    // console.log(allData,"allData")
+    
+    allData.forEach((x)=>{
+        console.log(x)
+        let Trow=document.createElement("tr")
+        Trow.innerHTML=`
+        <td>${x.name}</td>
+        <td>${x.email}</td>
+        <td>${x.salary}</td>
+        `
+        tBody.append(Trow)
+    })
+}
+
 
 addEmpBtn.addEventListener("click",(e)=>{
     console.log(empForm)
@@ -22,10 +43,14 @@ addEmpBtn.addEventListener("click",(e)=>{
         console.log(res)
         allEmps.push(newEmp)// [{},{}]
         localStorage.setItem("emps",JSON.stringify(allEmps))
-        // empForm.reset()
+        empForm.reset()
+        loadEmps()
         // alert("emp added to ls ")
     })
 
 })
 
+
+
+document.addEventListener("DOMContentLoaded",loadEmps)
 // [{}]
