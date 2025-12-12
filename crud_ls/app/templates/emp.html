@@ -114,11 +114,15 @@
             <input type="text" id="empSal" placeholder="Salary">
 
             <button id="addEmpBtn">Add Employee</button>
+            <button id="editEmpBtn" style="display: none;">edit Employee</button>
             <!-- <button id="allEmps">Get All Employees</button> -->
 
-            <table id="tTable">
+            
+        </form>
+        <table id="tTable">
                 <thead>
                     <tr>
+                        <td>id</td>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Salary</th>
@@ -129,10 +133,9 @@
                 <tbody id="tBody">
                 </tbody>
             </table>
-        </form>
     </div>
 
-    <script src="{% static 'e.js' %}"></script>
+    <script src="{% static 'e2.js' %}"></script>
 
 </body>
 </html>

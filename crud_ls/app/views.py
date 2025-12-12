@@ -4,8 +4,19 @@ from rest_framework.response import Response
 
 
 # Create your views here.
+
+@api_view(["PUT"])
+def edit_emp(request,id):
+    return Response({"msg":f"you have edited {id} id item"})
+
+
+
+@api_view(["DELETE"])
+def delete_emp(request,id):
+    return Response({"msg":f"you have deleted {id} id item"})
+
 def empform(request):
-    return render(request,"empform.html")
+    return render(request,"emp.html")
 
 @api_view(["POST"])
 def create_emp(request):
