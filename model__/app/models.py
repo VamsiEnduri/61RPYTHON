@@ -10,3 +10,7 @@ class Emps(models.Model):
 
     def  __str__(self):
         return self.name
+
+
+# revise yesterday code once 
+# all process of yesterday code

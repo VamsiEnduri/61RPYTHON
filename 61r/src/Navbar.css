@@ -1,0 +1,14 @@
+#navbar{
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0px;
+    margin: 5px !important;
+}
+
+#btns{
+    display: flex;
+    gap: 20px;
+}
