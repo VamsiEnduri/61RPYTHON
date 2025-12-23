@@ -4,6 +4,17 @@ from rest_framework.decorators import api_view
 from .models import Emps
 # Create your views here.
 
+@api_view(["PUT"])
+def edit_emp(request,__id):
+    reqData=request.data
+    editableEmp=Emps.objects.get(id=__id)
+    editableEmp.name=reqData["name"]
+    editableEmp.email=reqData["email"]
+    editableEmp.salary=reqData["salary"]
+    editableEmp.save()
+
+    return Response({"msg":f"{__id} emp edited successfully...."})
+
 @api_view(["DELETE"])
 def delete_emp(request,__id):
     Emps.objects.get(id=__id).delete() # delete from emps where id=2

@@ -129,6 +129,9 @@ function deleteEmp(id){
     })
 }
 
+
+
+
 function get_emps() {
     tBody.innerHTML=""
   fetch("/api/get_emps/")
@@ -143,7 +146,7 @@ function get_emps() {
         <td>${x.email}</td>
         <td>${x.salary}</td>
         <td>
-         <button>edit</button>
+         <button onclick='editEmp(${x.id})'>edit</button>
          <button onclick='deleteEmp(${x.id})'>delete</button>
         </td>
         `
@@ -153,6 +156,41 @@ function get_emps() {
     .catch((err) => console.log(err));
 }
 
+
+function editEmp(_id){
+  alert(_id)
+  fetch("/api/get_emps/")
+    .then((res) => res.json()).then(res=>{
+      console.log(res.data)
+      let editableEmp=res.data.find((x)=>x.id == _id)
+      console.log(editableEmp,"editableEmp")
+      document.getElementById("empName").value=editableEmp.name
+      document.getElementById("empEmail").value=editableEmp.email
+      document.getElementById("empSal").value=editableEmp.salary
+
+      document.getElementById("addEmpBtn").style.display="none"
+      document.getElementById("editEmpBtn").style.display="block"
+
+      document.getElementById("editEmpBtn").addEventListener("click",()=>{
+        alert("edit function triggered")
+        let updateEmpData={
+          name: document.getElementById("empName").value,
+          email:document.getElementById("empEmail").value,
+          salary:document.getElementById("empSal").value
+        }
+        fetch(`/api/edit_emp/${_id}`,{
+          method:"PUT",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(updateEmpData)
+        }).then(res=>res.json()).then(res=>{
+          console.log(res)
+          get_emps()
+        })
+      })
+    })
+}
 document.addEventListener("DOMContentLoaded", get_emps);
 
 // document.addEventListener("DOMContentLoaded", loadEmps);
